@@ -1,5 +1,7 @@
 import ElementBuilder from "./dom.js";
 
+const content = document.querySelector("#content");
+
 const bookmarkList = {
 	social: [
 		{ name: "Reddit", href: "https://www.reddit.com" },
@@ -31,11 +33,32 @@ const bookmarkList = {
 	],
 };
 
-console.log("bruh");
+// console.log("bruh");
 
-Object.entries(bookmarkList)
-	.forEach(
-		([key, value]) => {
-			key.	
+const bookmarkContainer = new ElementBuilder("main").setProperties({ id: "bookmarkContainer" });
+
+for (const category in bookmarkList) {
+	const categoryContainer = new ElementBuilder("ul").setProperties({ class: category });
+	const categoryTitle = new ElementBuilder("h3", category);
+	categoryContainer.addChild(categoryTitle.build());	//by this time structure looks like main > div > h3
+	// console.log({ categoryContainer, categoryTitle })
+
+	for (const bookmarks of bookmarkList[category]) {
+		const bookmark = new ElementBuilder("li")
+		const bookmarkLink = new ElementBuilder("a")
+			.setTextContent(bookmarks.name)
+			.setProperties({
+				class: "bookmark",
+				href: bookmarks.href,
+				// rel: "noopener noreferrer" 		// uncomment to open in new tab	
+			})
+
+		bookmark.addChild(bookmarkLink.build());
+		categoryContainer.addChild(bookmark.build());
+		console.log(bookmarks)
 	}
-	);
+
+	bookmarkContainer.addChild(categoryContainer.build());
+}
+
+content.appendChild(bookmarkContainer.build());

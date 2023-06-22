@@ -1,7 +1,6 @@
 export default class ElementBuilder {
-  constructor(elementName, innerText = "", properties = {}) {
+  constructor(elementName, innerText = "") {
     this.element = document.createElement(elementName);
-    this.setProperties(properties);
 
     if (Array.isArray(innerText))
       this.addChildren(innerText);
