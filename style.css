@@ -1,0 +1,56 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--termWidth: 70%;
+
+	/* COLORS */
+	--bookmarkClr: white;
+}
+
+#terminal {
+	/* height: clamp(var(--termMin), var(--termHeight), var(--termMax)); */
+	width: var(--termWidth);
+	aspect-ratio: 18/10;
+	background-color: #0c0c0ce6;
+	opacity: 0.9;
+	border: 1px solid #a02c20;
+
+	position: absolute;
+	border-radius: 3px;
+}
+
+@media (orientation: portrait) {
+	#terminal {
+		aspect-ratio: 10/18;
+		max-height: 80%;
+	}
+}
+
+#content {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+ul {
+	padding: 2rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+
+}
+
+li {
+	list-style-type: none;
+
+}
+
+a {
+	text-decoration: none;
+	color: var(--bookmarkClr);
+}
