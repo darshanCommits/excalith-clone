@@ -3,6 +3,12 @@ import ElementBuilder from "./dom.js";
 const content = document.querySelector("#content");
 
 const bookmarkList = {
+	Docs: [
+		{ name: "JS", href: "https://javascript.info" },
+		{ name: "CSS", href: "https://css-tricks.com" },
+		{ name: "MDN", href: "https://developer.mozilla.org" },
+		{ name: "React", href: "https://react.dev" },
+	],
 	Social: [
 		{ name: "Reddit", href: "https://www.reddit.com" },
 		{ name: "Facebook", href: "https://www.facebook.com" },
@@ -21,12 +27,6 @@ const bookmarkList = {
 		{ name: "Youtube", href: "https://www.youtube.com" },
 		{ name: "Spotify", href: "https://www.spotify.com" },
 		{ name: "Canva", href: "https://www.canva.com" },
-	],
-	Documentation: [
-		{ name: "JS", href: "https://javascript.info" },
-		{ name: "CSS", href: "https://css-tricks.com" },
-		{ name: "MDN", href: "https://developer.mozilla.org" },
-		{ name: "React", href: "https://react.dev" },
 	],
 	Esoteric: [
 		{ name: "Haskell", href: "https://learnyouahaskell.com" },
