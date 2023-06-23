@@ -71,6 +71,4 @@ for (const category in bookmarkList) {
 	terminal.addChild(categoryUlWrapper.build());
 };
 
-
-
 content.appendChild(terminal.build())
