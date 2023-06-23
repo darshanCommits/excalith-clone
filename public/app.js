@@ -3,42 +3,44 @@ import ElementBuilder from "./dom.js";
 const content = document.querySelector("#content");
 
 const bookmarkList = {
-	social: [
+	Social: [
 		{ name: "Reddit", href: "https://www.reddit.com" },
 		{ name: "Facebook", href: "https://www.facebook.com" },
 		{ name: "Instagram", href: "https://www.instagram.com" },
 		{ name: "Whatsapp", href: "https://web.whatsapp.com" },
 	],
-	coding: [
+	Coding: [
 		{ name: "Github", href: "https://github.com" },
 		{ name: "CodePen", href: "https://codepen.io" },
-		{ name: "Dev.to", href: "https://dev.to" },
 		{ name: "Codewars", href: "https://www.codewars.com" },
 		{ name: "LeetCode", href: "https://leetcode.com" },
 	],
 
-	mixed: [
+	General: [
 		{ name: "GPT", href: "https://www.chatgpt.com" },
 		{ name: "Youtube", href: "https://www.youtube.com" },
 		{ name: "Spotify", href: "https://www.spotify.com" },
+		{ name: "Canva", href: "https://www.canva.com" },
 	],
-	documentation: [
-		{ name: "The Odin Project", href: "https://www.theodinproject.com" },
-		{ name: "Fullstack Open", href: "https://fullstackopen.com" },
-		{ name: "JavaScript.info", href: "https://javascript.info" },
-		{ name: "Learn You a Haskell", href: "https://learnyouahaskell.com" },
-		{ name: "CSS-Tricks", href: "https://css-tricks.com" },
-		{ name: "MDN Web Docs", href: "https://developer.mozilla.org" },
-		{ name: "React Docs", href: "https://react.dev" },
+	Documentation: [
+		{ name: "JS", href: "https://javascript.info" },
+		{ name: "CSS", href: "https://css-tricks.com" },
+		{ name: "MDN", href: "https://developer.mozilla.org" },
+		{ name: "React", href: "https://react.dev" },
 	],
+	Esoteric: [
+		{ name: "Haskell", href: "https://learnyouahaskell.com" },
+		{ name: "TOP", href: "https://www.theodinproject.com" },
+		{ name: "FSO", href: "https://fullstackopen.com" },
+		{ name: "Rust", href: "https://doc.rust-lang.org/stable/rust-by-example/" }
+	]
 };
 
 // console.log("bruh");
-
-const bookmarkContainer = new ElementBuilder("main").setProperties({ id: "bookmarkContainer" });
+const terminal = new ElementBuilder("main").setProperties({ id: "terminal" }).addClass("window-glow");
 
 for (const category in bookmarkList) {
-	const categoryContainer = new ElementBuilder("ul").setProperties({ class: category });
+	const categoryContainer = new ElementBuilder("ul").addClass("category");
 	const categoryTitle = new ElementBuilder("h3", category);
 	categoryContainer.addChild(categoryTitle.build());	//by this time structure looks like main > div > h3
 	// console.log({ categoryContainer, categoryTitle })
@@ -58,7 +60,7 @@ for (const category in bookmarkList) {
 		console.log(bookmarks)
 	}
 
-	bookmarkContainer.addChild(categoryContainer.build());
+	terminal.addChild(categoryContainer.build());
 }
 
-content.appendChild(bookmarkContainer.build());
+content.appendChild(terminal.build())

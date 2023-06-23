@@ -30,6 +30,11 @@ export default class ElementBuilder {
     return this;
   }
 
+  addClass(className) {
+    this.element.classList.add(className);
+    return this;
+  }
+
   multiply(times) {
     const fragment = document.createDocumentFragment();
 
