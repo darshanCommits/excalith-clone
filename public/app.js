@@ -41,32 +41,36 @@ const terminal = new ElementBuilder("main")
 	.setProperties({ id: "terminal" })
 	.addClass("window-glow");
 
-Object.entries(bookmarkList)
-	.forEach(([category, bookmarks]) => {
-		const categoryContainer = new ElementBuilder("ul")
-			.addClass("category");
-		const categoryTitle = new ElementBuilder("h3", category);
-		const categoryWrapper = new ElementBuilder("div");
-		categoryWrapper.addChild(categoryTitle.build());
-		// categoryContainer.addChild(categoryTitle.build());
+const categoryTitleWrapper = new ElementBuilder("div");
+const categoryUlWrapper = new ElementBuilder("div");
 
-		bookmarks.forEach((bookmark) => {
-			const bookmarkElement = new ElementBuilder("li");
-			const bookmarkLink = new ElementBuilder("a")
-				.setTextContent(bookmark.name)
-				.setProperties({
-					class: "bookmark",
-					href: bookmark.href,
-					// rel: "noopener noreferrer" // uncomment to open in new tab
-				});
+for (const category in bookmarkList) {
+	const categoryContainer = new ElementBuilder("ul").addClass("category");
+	const categoryTitle = new ElementBuilder("h3", category);
 
-			bookmarkElement.addChild(bookmarkLink.build());
-			categoryContainer.addChild(bookmarkElement.build());
-			console.log(bookmark);
-		});
+	categoryTitleWrapper.addChild(categoryTitle.build());
+	for (const bookmarks of bookmarkList[category]) {
+		const bookmark = new ElementBuilder("li")
+		const bookmarkLink = new ElementBuilder("a")
+			.setTextContent(bookmarks.name)
+			.setProperties({
+				class: "bookmark",
+				href: bookmarks.href,
+				// rel: "noopener noreferrer" 		// uncomment to open in new tab	
+			})
 
-		terminal.addChild(categoryContainer.build());
-	});
+		bookmark.addChild(bookmarkLink.build());
+		categoryContainer.addChild(bookmark.build());
+		// console.log(bookmarks)
+
+		categoryUlWrapper.addChild(categoryContainer.build());
+		console.log(categoryUlWrapper.build());
+	}
+
+	terminal.addChild(categoryTitleWrapper.build());
+	terminal.addChild(categoryUlWrapper.build());
+};
+
 
 
 content.appendChild(terminal.build())

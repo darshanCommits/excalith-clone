@@ -6,6 +6,7 @@
 
 :root {
 	--termWidth: 60%;
+	--gap: 2rem;
 
 	/* COLORS */
 	--termClr: #1E212B;
@@ -23,9 +24,8 @@ body {
 
 #terminal {
 	padding: 2rem;
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
+	display: grid;
+	grid-template-columns: 15% auto;
 	/* height: clamp(var(--termMin), var(--termHeight), var(--termMax)); */
 	width: var(--termWidth);
 	aspect-ratio: 18/10;
@@ -33,6 +33,19 @@ body {
 	border: 1px solid var(--shadowClr);
 	border-radius: 9px;
 	border: 3px solid var(--shadowClr);
+}
+
+#terminal div:first-child {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+}
+
+#terminal div:last-child {
+
+	display: flex;
+	flex-direction: column;
+	gap: 2.15rem;
 }
 
 .window-glow {
@@ -67,7 +80,7 @@ ul {
 }
 
 h3 {
-	margin-right: 1rem;
+	margin-right: 2rem;
 	display: inline;
 	color: var(--h3Clr);
 }
