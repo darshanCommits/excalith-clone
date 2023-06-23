@@ -46,8 +46,9 @@ Object.entries(bookmarkList)
 		const categoryContainer = new ElementBuilder("ul")
 			.addClass("category");
 		const categoryTitle = new ElementBuilder("h3", category);
-
-		categoryContainer.addChild(categoryTitle.build());
+		const categoryWrapper = new ElementBuilder("div");
+		categoryWrapper.addChild(categoryTitle.build());
+		// categoryContainer.addChild(categoryTitle.build());
 
 		bookmarks.forEach((bookmark) => {
 			const bookmarkElement = new ElementBuilder("li");
