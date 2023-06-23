@@ -37,30 +37,35 @@ const bookmarkList = {
 };
 
 // console.log("bruh");
-const terminal = new ElementBuilder("main").setProperties({ id: "terminal" }).addClass("window-glow");
+const terminal = new ElementBuilder("main")
+	.setProperties({ id: "terminal" })
+	.addClass("window-glow");
 
-for (const category in bookmarkList) {
-	const categoryContainer = new ElementBuilder("ul").addClass("category");
-	const categoryTitle = new ElementBuilder("h3", category);
-	categoryContainer.addChild(categoryTitle.build());	//by this time structure looks like main > div > h3
-	// console.log({ categoryContainer, categoryTitle })
+Object.entries(bookmarkList)
+	.forEach(([category, bookmarks]) => {
+		const categoryContainer = new ElementBuilder("ul")
+			.addClass("category");
+		const categoryTitle = new ElementBuilder("h3", category);
 
-	for (const bookmarks of bookmarkList[category]) {
-		const bookmark = new ElementBuilder("li")
-		const bookmarkLink = new ElementBuilder("a")
-			.setTextContent(bookmarks.name)
-			.setProperties({
-				class: "bookmark",
-				href: bookmarks.href,
-				// rel: "noopener noreferrer" 		// uncomment to open in new tab	
-			})
+		categoryContainer.addChild(categoryTitle.build());
 
-		bookmark.addChild(bookmarkLink.build());
-		categoryContainer.addChild(bookmark.build());
-		console.log(bookmarks)
-	}
+		bookmarks.forEach((bookmark) => {
+			const bookmarkElement = new ElementBuilder("li");
+			const bookmarkLink = new ElementBuilder("a")
+				.setTextContent(bookmark.name)
+				.setProperties({
+					class: "bookmark",
+					href: bookmark.href,
+					// rel: "noopener noreferrer" // uncomment to open in new tab
+				});
 
-	terminal.addChild(categoryContainer.build());
-}
+			bookmarkElement.addChild(bookmarkLink.build());
+			categoryContainer.addChild(bookmarkElement.build());
+			console.log(bookmark);
+		});
+
+		terminal.addChild(categoryContainer.build());
+	});
+
 
 content.appendChild(terminal.build())
